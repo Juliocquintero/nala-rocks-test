@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import SelectIdioma from "./components/SelectIdioma";
 import Resumen from "./pages/Resumen";
+import Empleado from "./pages/Empleado";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,11 +17,15 @@ function App() {
       path: "/resumen",
       element: <Resumen />,
     },
+    {
+      path: "/resumen/:id",
+      element: <Empleado />,
+    },
   ]);
   return (
     <div className="App">
       <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
         <SelectIdioma />
       </header>
       <main>

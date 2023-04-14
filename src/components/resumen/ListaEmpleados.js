@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TableFilter from "./TableFilter";
 import Table from "./Table";
+import OrganigramaCaptura from "./OrganigramaCaptura";
 
 const ListaEmpleados = ({
   empleados,
@@ -19,23 +20,29 @@ const ListaEmpleados = ({
   };
 
   return (
-    <>
-      <TableFilter
-        filtroMes={filtroMes}
-        setFiltroMes={setFiltroMes}
-        meses_filtrados={meses_filtrados}
-        generarKey={generarKey}
-        idioma={idioma}
-      />
-      <br />
-      <Table
-        empleados={empleados}
-        nombres_campos={nombres_campos}
-        filtroMes={filtroMes}
-        meses_filtrados={meses_filtrados}
-        generarKey={generarKey}
-      />
-    </>
+    <div className="resumen-container">
+      <div>
+        <TableFilter
+          filtroMes={filtroMes}
+          setFiltroMes={setFiltroMes}
+          meses_filtrados={meses_filtrados}
+          generarKey={generarKey}
+          idioma={idioma}
+        />
+        <br />
+        <Table
+          empleados={empleados}
+          nombres_campos={nombres_campos}
+          filtroMes={filtroMes}
+          meses_filtrados={meses_filtrados}
+          generarKey={generarKey}
+        />
+      </div>
+
+      <div>
+        <OrganigramaCaptura empleados={empleados} filtroMes={filtroMes} />
+      </div>
+    </div>
   );
 };
 

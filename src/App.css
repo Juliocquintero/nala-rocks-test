@@ -104,6 +104,34 @@ main {
   width: auto;
 }
 
+.resumen-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.organigrama-node {
+  padding: 5px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.area {
+  border: 1px solid #282c34;
+}
+
+.organigrama-empleado-container {
+  border: 1px solid #282c34;
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  justify-items: center;
+  padding: 10px;
+  color: #282c34;
+  text-decoration: none;
+}
+
 table th {
   font-size: 16px;
   width: auto;
@@ -169,6 +197,17 @@ table th input {
 
 .selector-idioma-container {
   display: flex;
+}
+
+.empleado-img {
+  width: 100px;
+  object-fit: contain;
+}
+
+.empleado-container {
+  display: grid;
+  width: 100%;
+  justify-items: center;
 }
 
 @keyframes App-logo-spin {

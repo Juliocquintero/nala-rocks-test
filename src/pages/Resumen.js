@@ -58,12 +58,14 @@ const Resumen = () => {
       <div className="container">
         <h1 className="page-title">{traducciones[idioma].resumen.title}</h1>
         {empleados?.length ? (
-          <ListaEmpleados
-            empleados={empleados}
-            meses_filtrados={meses_filtrados}
-            nombres_campos={nombres_campos}
-            idioma={idioma}
-          />
+          <>
+            <ListaEmpleados
+              empleados={empleados}
+              meses_filtrados={meses_filtrados}
+              nombres_campos={nombres_campos}
+              idioma={idioma}
+            />
+          </>
         ) : (
           <>
             <Navigate to="/" />
