@@ -1,10 +1,25 @@
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 40px;
   pointer-events: none;
+}
+
+.button {
+  width: auto;
+  padding: 10px;
+  font-size: medium;
+  background-color: #282c34;
+  color: #fff;
+  margin: 10px;
+  border-radius: 2.5px;
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,7 +30,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +41,111 @@
 
 .App-link {
   color: #61dafb;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center {
+  justify-content: center;
+}
+.table-data-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.table-filter-container {
+  align-self: end;
+  display: flex;
+  gap: 10px;
+}
+.table-total {
+  align-self: end;
+}
+.table-filter-option {
+  text-align: center;
+}
+.table-data-title {
+  font-size: 20px;
+}
+.table-container {
+  width: 100%;
+  overflow: auto;
+  background-color: #fff;
+  color: #282c34;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #282c34;
+  border-spacing: 10px;
+}
+
+.table-container.auto {
+  width: auto;
+}
+
+table th {
+  font-size: 16px;
+  width: auto;
+  padding: 1px;
+}
+table th input {
+  text-align: center;
+  width: 100%;
+}
+
+.table-data-field {
+  text-align: start;
+}
+.table-data-field[data-contratado="true"] {
+  color: #61dafb;
+  font-weight: bold;
+}
+
+.table-data-field[data-promovido="true"] {
+  color: green;
+  font-weight: bold;
+}
+.center {
+  text-align: center;
+}
+.monto {
+  text-align: end;
+}
+
+.leyenda {
+  gap: 20px;
+}
+.contratado,
+.promovido {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+}
+.leyenda .box {
+  width: 15px;
+  height: 15px;
+}
+.contratado .box {
+  background-color: #61dafb;
+}
+
+.promovido .box {
+  background-color: green;
 }
 
 @keyframes App-logo-spin {
