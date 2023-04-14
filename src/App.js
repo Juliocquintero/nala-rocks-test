@@ -2,7 +2,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/Home";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
+
+import SelectIdioma from "./components/SelectIdioma";
+import Resumen from "./pages/Resumen";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,14 +13,15 @@ function App() {
       element: <Home />,
     },
     {
-      path: "/dashboard",
-      element: <Dashboard />,
+      path: "/resumen",
+      element: <Resumen />,
     },
   ]);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo" />
+        <SelectIdioma />
       </header>
       <main>
         <RouterProvider router={router} />

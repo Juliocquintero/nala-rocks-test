@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import TableFilter from "../components/dashboard/TableFilter";
-import TableHeader from "../components/dashboard/TableHeader";
-import TableBody from "../components/dashboard/TableBody";
+import TableFilter from "./TableFilter";
+import Table from "./Table";
 
-const TablaEmpleados = ({ empleados, meses_filtrados, nombres_campos }) => {
+const ListaEmpleados = ({
+  empleados,
+  meses_filtrados,
+  nombres_campos,
+  idioma,
+}) => {
   const [filtroMes, setFiltroMes] = useState("");
   const generarKey = (data) => {
     const keys = Object.keys(data);
@@ -21,20 +25,18 @@ const TablaEmpleados = ({ empleados, meses_filtrados, nombres_campos }) => {
         setFiltroMes={setFiltroMes}
         meses_filtrados={meses_filtrados}
         generarKey={generarKey}
+        idioma={idioma}
       />
       <br />
-
-      <table className="table-container auto">
-        <TableHeader nombres_campos={nombres_campos} />
-        <TableBody
-          empleados={empleados}
-          filtroMes={filtroMes}
-          meses_filtrados={meses_filtrados}
-          generarKey={generarKey}
-        />
-      </table>
+      <Table
+        empleados={empleados}
+        nombres_campos={nombres_campos}
+        filtroMes={filtroMes}
+        meses_filtrados={meses_filtrados}
+        generarKey={generarKey}
+      />
     </>
   );
 };
 
-export default TablaEmpleados;
+export default ListaEmpleados;

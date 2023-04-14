@@ -2,6 +2,30 @@ import React from "react";
 import { read, utils } from "xlsx";
 
 const FilePicker = ({ handleItems }) => {
+  const renombrarKeys = (array) => {
+    const nuevoArray = []; // Array vacío para almacenar los nuevos objetos con las keys renombradas
+
+    array.forEach((objeto) => {
+      const nuevoObjeto = {}; // Objeto vacío para almacenar las nuevas keys y valores
+
+      // Recorremos las keys del objeto actual
+      Object.keys(objeto).forEach((key) => {
+        // Eliminamos los espacios en blanco al inicio y al final de la key
+        const nuevaKey = key.trim();
+
+        // Cambiamos los espacios en blanco por guiones bajos (_)
+        const nuevaKeyModificada = nuevaKey.replace(/\s+/g, "_");
+
+        // Asignamos la nueva key y su valor al nuevo objeto
+        nuevoObjeto[nuevaKeyModificada] = objeto[key];
+      });
+
+      // Añadimos el nuevo objeto al nuevo array
+      nuevoArray.push(nuevoObjeto);
+    });
+
+    return nuevoArray; // Retornamos el nuevo array con las keys renombradas
+  };
   const readExcel = (file) => {
     const promise = new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -23,30 +47,6 @@ const FilePicker = ({ handleItems }) => {
     });
 
     promise.then((data) => {
-      const renombrarKeys = (array) => {
-        const nuevoArray = []; // Array vacío para almacenar los nuevos objetos con las keys renombradas
-
-        array.forEach((objeto) => {
-          const nuevoObjeto = {}; // Objeto vacío para almacenar las nuevas keys y valores
-
-          // Recorremos las keys del objeto actual
-          Object.keys(objeto).forEach((key) => {
-            // Eliminamos los espacios en blanco al inicio y al final de la key
-            const nuevaKey = key.trim();
-
-            // Cambiamos los espacios en blanco por guiones bajos (_)
-            const nuevaKeyModificada = nuevaKey.replace(/\s+/g, "_");
-
-            // Asignamos la nueva key y su valor al nuevo objeto
-            nuevoObjeto[nuevaKeyModificada] = objeto[key];
-          });
-
-          // Añadimos el nuevo objeto al nuevo array
-          nuevoArray.push(nuevoObjeto);
-        });
-
-        return nuevoArray; // Retornamos el nuevo array con las keys renombradas
-      };
       handleItems(renombrarKeys(data));
     });
   };

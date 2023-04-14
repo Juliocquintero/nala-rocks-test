@@ -1,4 +1,6 @@
 import React from "react";
+import { traducciones } from "../../traducciones";
+import { useSelector } from "react-redux";
 
 const TableRoadData = ({ empleado, empleadoPromovidoOContratado }) => {
   const status = empleadoPromovidoOContratado(empleado);
@@ -34,7 +36,9 @@ const TableRoadData = ({ empleado, empleadoPromovidoOContratado }) => {
   );
 };
 
-const TableBody = ({ empleados, filtroMes, meses_filtrados, generarKey }) => {
+const TableBody = ({ filtroMes, meses_filtrados, generarKey }) => {
+  const { empleados, idioma } = useSelector((state) => state.data);
+
   // Función para calcular el total de la nómina del mes actual
   const calcularTotalNomina = () => {
     let totalNomina = 0;
@@ -132,14 +136,14 @@ const TableBody = ({ empleados, filtroMes, meses_filtrados, generarKey }) => {
               <td>
                 <div className="contratado">
                   <div className="box"></div>
-                  <span>Contratado</span>
+                  <span>{traducciones[idioma].resumen.leyenda.contratado}</span>
                 </div>
               </td>
 
               <td>
                 <div className="promovido">
                   <div className="box"></div>
-                  <span>Promovido</span>
+                  <span>{traducciones[idioma].resumen.leyenda.promovido}</span>
                 </div>
               </td>
             </tr>

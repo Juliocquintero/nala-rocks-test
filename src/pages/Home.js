@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import FilePicker from "../components/FilePicker";
-import Table from "../components/get file data/table/Table";
-import { useDispatch } from "react-redux";
+import Table from "../components/home/Table";
+import { useDispatch, useSelector } from "react-redux";
 import { insertFileData } from "../reducers/dataReducer";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import Advertencia from "../components/home/Advertencia";
+import { traducciones } from "../traducciones";
 
 const Home = () => {
   const [items, setItems] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { idioma } = useSelector((state) => state.data);
 
   const [nombresDeCampos, setNombresDeCampos] = useState([]);
   const [edicion, setEdicion] = useState(false);
@@ -20,7 +24,8 @@ const Home = () => {
       Object.keys(data[0]).map((el) => {
         let nombreCampo = {};
         nombreCampo.original = el;
-        nombreCampo.modificado = "";
+        // Se reemplaza el caracter "" por un espacio vacío en la cadena "el" utilizando una expresión regular. Así obtenemos un nombre con espacios en blanco para mostrar y cuidamos el nombre del campo.
+        nombreCampo.modificado = el.replace(/_/g, " ");
         return nombreCampo;
       })
     );
@@ -55,7 +60,7 @@ const Home = () => {
           nombres_campos: nombresDeCampos,
         })
       );
-      navigate("/dashboard", {
+      navigate("/resumen", {
         state: {
           empleados: items,
           nombres_campos: nombresDeCampos,
@@ -63,39 +68,41 @@ const Home = () => {
       });
     }
   };
+
   return (
-    <div className="container center">
-      <div className="table-data-container">
-        {items.length ? (
-          <>
-            <p className="table-data-title">
-              Revisa y personaliza tus datos con facilidad gracias a nuestra
-              interfaz intuitiva.
-              <br/> Modifica los campos a tu gusto para una
-              experiencia totalmente personalizada.
-            </p>
-            <Table
-              items={items}
-              nombresDeCampos={nombresDeCampos}
-              handleNombreCampo={handleNombreCampo}
-            />
-            <Button
-              onClick={handleConfirm}
-              title="Aceptar"
-              disabled={edicion}
-            />
-            {edicion && (
-              <Button onClick={guardarNombreCampos} title="Guardar nombres" />
-            )}
-          </>
-        ) : (
-          <>
-            <p>Ingresa el documento .xlsx</p>
-            <FilePicker handleItems={handleItems} />
-          </>
-        )}
+    <>
+      <h1 className="page-title">{traducciones[idioma].home.title}</h1>
+      <div className="container center">
+        <div className="table-data-container">
+          {items.length ? (
+            <>
+              <p className="table-data-title">
+              {traducciones[idioma].home.instructions}
+              </p>
+              <Table
+                items={items}
+                nombresDeCampos={nombresDeCampos}
+                handleNombreCampo={handleNombreCampo}
+              />
+              <Button
+                onClick={handleConfirm}
+                title="Aceptar"
+                disabled={edicion}
+              />
+              {edicion && (
+                <Button onClick={guardarNombreCampos} title="Guardar nombres" />
+              )}
+            </>
+          ) : (
+            <>
+              <Advertencia>
+                <FilePicker handleItems={handleItems} />
+              </Advertencia>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

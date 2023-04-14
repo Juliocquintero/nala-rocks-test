@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ListaEmpleados from "./codigo";
+import ListaEmpleados from "../components/resumen/ListaEmpleados";
+import { traducciones } from "../traducciones";
 
-const Dashboard = () => {
-  const { empleados, nombres_campos } = useSelector((state) => state.data);
+const Resumen = () => {
+  const { empleados, nombres_campos, idioma } = useSelector(
+    (state) => state.data
+  );
 
-  const filtrarPorMes = (elementos) => {
+  const [meses_filtrados, setMeses_filtrados] = useState([]);
+  const filtrarPorMes = (elementos, idioma) => {
     const meses = new Set(); // Conjunto para almacenar los meses únicos
     const listaFiltrada = [];
 
@@ -16,22 +20,8 @@ const Dashboard = () => {
       const agregarNombreMesYTimeStamp = (objeto) => {
         const [mesOriginal, anio] = objeto.Mes.split("-");
         const fecha = new Date(anio, mesOriginal - 1, 1); // Restamos 1 al mes porque el constructor de Date usa los meses del 0 al 11
-        const meses = [
-          "Enero",
-          "Febrero",
-          "Marzo",
-          "Abril",
-          "Mayo",
-          "Junio",
-          "Julio",
-          "Agosto",
-          "Septiembre",
-          "Octubre",
-          "Noviembre",
-          "Diciembre",
-        ];
-
-        //**
+        const meses = traducciones[idioma].resumen.meses;
+        // Traducciones de acuerdo al idioma que desee el usuario
         const posicionMes = fecha.getMonth();
         const mes = meses[posicionMes];
         const timeStamp = fecha.getTime();
@@ -58,24 +48,21 @@ const Dashboard = () => {
     // Retorna la lista filtrada
   };
 
-  const meses_filtrados = filtrarPorMes(empleados);
-
-
   useEffect(() => {
-    if (!empleados) {
-    }
+    setMeses_filtrados(filtrarPorMes(empleados, idioma));
     return () => {};
-  }, [empleados]);
+  }, [idioma]);
 
   return (
     <>
       <div className="container">
-        <h2>Dashboard</h2>
+        <h1 className="page-title">{traducciones[idioma].resumen.title}</h1>
         {empleados?.length && (
           <ListaEmpleados
             empleados={empleados}
             meses_filtrados={meses_filtrados}
             nombres_campos={nombres_campos}
+            idioma={idioma}
           />
         )}
       </div>
@@ -83,4 +70,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Resumen;
