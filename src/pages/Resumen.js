@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ListaEmpleados from "../components/resumen/ListaEmpleados";
 import { traducciones } from "../traducciones";
+import { Navigate } from "react-router-dom";
 
 const Resumen = () => {
   const { empleados, nombres_campos, idioma } = useSelector(
@@ -44,26 +45,29 @@ const Resumen = () => {
       (a, b) => a.timeStamp - b.timeStamp
     );
     return listaOrdenada;
-
     // Retorna la lista filtrada
   };
 
   useEffect(() => {
     setMeses_filtrados(filtrarPorMes(empleados, idioma));
     return () => {};
-  }, [idioma]);
+  }, [idioma, empleados]);
 
   return (
     <>
       <div className="container">
         <h1 className="page-title">{traducciones[idioma].resumen.title}</h1>
-        {empleados?.length && (
+        {empleados?.length ? (
           <ListaEmpleados
             empleados={empleados}
             meses_filtrados={meses_filtrados}
             nombres_campos={nombres_campos}
             idioma={idioma}
           />
+        ) : (
+          <>
+            <Navigate to="/" />
+          </>
         )}
       </div>
     </>
