@@ -66,6 +66,9 @@ main {
 .center {
   justify-content: center;
 }
+
+/* Estilos de las tablas */
+
 .table-data-container {
   width: 100%;
   display: flex;
@@ -81,55 +84,6 @@ main {
 }
 .table-total {
   align-self: end;
-}
-.table-filter-option {
-  text-align: center;
-}
-.table-data-title {
-  font-size: 20px;
-  margin: 20px;
-}
-.table-container {
-  width: 100%;
-  overflow: auto;
-  background-color: #fff;
-  color: #282c34;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #282c34;
-  border-spacing: 10px;
-}
-
-.table-container.auto {
-  width: auto;
-}
-
-.resumen-container {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  width: 100%;
-  justify-content: space-evenly;
-}
-
-.organigrama-node {
-  padding: 5px;
-  border-radius: 8px;
-  display: inline-block;
-}
-
-.area {
-  border: 1px solid #282c34;
-}
-
-.organigrama-empleado-container {
-  border: 1px solid #282c34;
-  display: grid;
-  grid-template-rows: 1fr min-content;
-  justify-items: center;
-  padding: 10px;
-  color: #282c34;
-  text-decoration: none;
 }
 
 table th {
@@ -182,6 +136,57 @@ table th input {
   background-color: green;
 }
 
+.table-filter-option {
+  text-align: center;
+}
+.table-data-title {
+  font-size: 20px;
+  margin: 20px;
+}
+.table-container {
+  width: 100%;
+  overflow: auto;
+  background-color: #fff;
+  color: #282c34;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #282c34;
+  border-spacing: 10px;
+}
+
+.table-container.auto {
+  width: auto;
+}
+
+.resumen-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+/* Estilos del organigrama */
+.organigrama-node {
+  padding: 5px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.area {
+  border: 1px solid #282c34;
+}
+
+.organigrama-empleado-container {
+  border: 1px solid #282c34;
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  justify-items: center;
+  padding: 10px;
+  color: #282c34;
+  text-decoration: none;
+}
+
 .cells-list {
   display: grid;
   width: auto;
@@ -195,19 +200,23 @@ table th input {
   text-align: justify;
 }
 
+/* Estilos del Selector de idiomas */
+
 .selector-idioma-container {
   display: flex;
 }
 
-.empleado-img {
-  width: 100px;
-  object-fit: contain;
-}
+/* Estilos pantalla de Perfil de personal */
 
 .empleado-container {
   display: grid;
   width: 100%;
   justify-items: center;
+}
+
+.empleado-img {
+  width: 100px;
+  object-fit: contain;
 }
 
 @keyframes App-logo-spin {
