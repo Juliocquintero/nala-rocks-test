@@ -55,6 +55,7 @@ const FilePicker = ({ handleItems }) => {
     <>
       <input
         type="file"
+        accept=".csv, .xlsx"
         onChange={(e) => {
           const file = e.target.files[0];
           readExcel(file);
